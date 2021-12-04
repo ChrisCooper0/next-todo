@@ -1,10 +1,24 @@
+import React, { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Todo from "../components/Todo";
+import axios from "axios";
 
 const Home: NextPage = () => {
+  const [todos, setTodos] = useState(null);
+
+  useEffect(() => {
+    getTodos();
+  }, []);
+
+  const getTodos = async () => {
+    const res = await axios.get("http://localhost:3001/api/todos");
+    const data = res.data;
+    setTodos(data);
+  };
+
   return (
     <>
       <Head>
@@ -14,7 +28,7 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <Header />
-        <Todo />
+        <Todo todo={todos} />
         <Footer />
       </main>
     </>

@@ -33,8 +33,14 @@ const Button = styled.button`
   }
 `;
 
-const Todo = () => {
-  const [list, setList] = useState<any>([]);
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Todo = ({ todo }: any) => {
+  // const [list, setList] = useState<any>([]);
   const [name, setName] = useState<string>("");
 
   const handleChange = (event: any) => {
@@ -42,9 +48,9 @@ const Todo = () => {
   };
 
   const handleAdd = () => {
-    const newList = list.concat({ id: uuid(), name });
-    setList(newList);
-    setName("");
+    // const newList = list.concat({ id: uuid(), name });
+    // setList(newList);
+    // setName("");
   };
 
   return (
@@ -63,7 +69,13 @@ const Todo = () => {
           Add
         </Button>
       </TodoWrapper>
-      <TodoList list={list} />
+      {todo ? (
+        <TodoList todo={todo} />
+      ) : (
+        <Loading>
+          <p>Loading...</p>
+        </Loading>
+      )}
     </>
   );
 };

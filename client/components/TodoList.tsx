@@ -1,4 +1,4 @@
-import { Key, ReactChild, ReactFragment, ReactPortal } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const TodoListWrapper = styled.div`
@@ -15,12 +15,12 @@ const TodoListWrapper = styled.div`
   }
 `;
 
-const TodoList = ({ list }: any) => {
+const TodoList = ({ todo }: any) => {
   return (
     <TodoListWrapper>
       <ul>
-        {list.map((item: any) => (
-          <li key={item.id}>{item.name}</li>
+        {todo.map((item: any) => (
+          <li key={item.id}>{item.title}</li>
         ))}
       </ul>
     </TodoListWrapper>
