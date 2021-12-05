@@ -6,20 +6,11 @@ const { v4: uuidv4 } = require("uuid");
 // CORS
 app.use(cors());
 
-// Express Middleware for data on post request
+// // // Express Middleware for data on post request
 app.use(express.json({ extended: false }));
 
 // TODO ARRAY
-const todos = [
-  {
-    id: 1,
-    title: "Task 1 from api",
-  },
-  {
-    id: 2,
-    title: "Task 2 from api",
-  },
-];
+const todos = [];
 
 // GET API
 app.get("/api/todos", (req, res) => {

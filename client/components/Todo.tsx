@@ -41,25 +41,34 @@ const Loading = styled.div`
   align-items: center;
 `;
 
-const Todo = ({ todo }: any) => {
+const Todo = () => {
+  const [todos, setTodos] = useState(null);
+
+  useEffect(() => {
+    getTodos();
+  }, []);
+
+  const getTodos = async () => {
+    const res = await axios.get("http://localhost:3001/api/todos");
+    const data = res.data;
+    setTodos(data);
+  };
+
   const [title, setTitle] = useState<string>("");
 
   const handleChange = (event: any) => {
     setTitle(event.target.value);
   };
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
     const newTodo = { id: uuid(), title };
 
-    axios
-      .post("http://localhost:3001/api/todos", newTodo)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
+    const response = await axios.post(
+      "http://localhost:3001/api/todos",
+      newTodo
+    );
+    const data = response.data;
+    setTodos(data);
   };
 
   return (
@@ -78,8 +87,8 @@ const Todo = ({ todo }: any) => {
           Add
         </Button>
       </TodoWrapper>
-      {todo ? (
-        <TodoList todo={todo} />
+      {todos ? (
+        <TodoList todo={todos} />
       ) : (
         <Loading>
           <p>Loading...</p>
