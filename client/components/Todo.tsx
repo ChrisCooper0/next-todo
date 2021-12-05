@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TodoList from "./TodoList";
 import { v4 as uuid } from "uuid";
+import axios from "axios";
 
 const TodoWrapper = styled.div`
   display: flex;
@@ -28,6 +29,7 @@ const Button = styled.button`
   padding: 0.5rem 1rem;
   background-color: #f5f5f5;
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
   &:hover {
     background-color: #e5e5e5;
   }
@@ -40,17 +42,24 @@ const Loading = styled.div`
 `;
 
 const Todo = ({ todo }: any) => {
-  // const [list, setList] = useState<any>([]);
-  const [name, setName] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
 
   const handleChange = (event: any) => {
-    setName(event.target.value);
+    setTitle(event.target.value);
   };
 
   const handleAdd = () => {
-    // const newList = list.concat({ id: uuid(), name });
-    // setList(newList);
-    // setName("");
+    const newTodo = { id: uuid(), title };
+
+    axios
+      .post("http://localhost:3001/api/todos", newTodo)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
   };
 
   return (
@@ -59,7 +68,7 @@ const Todo = ({ todo }: any) => {
         <TodoInput>
           <input
             type="text"
-            value={name}
+            value={title}
             onChange={handleChange}
             required
             placeholder="Add a to do..."
