@@ -23,13 +23,14 @@ const TodoInput = styled.div`
   }
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   border: none;
   border-radius: 5px;
   padding: 0.5rem 1rem;
   background-color: #f5f5f5;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+  margin-left: 0.5rem;
   &:hover {
     background-color: #e5e5e5;
   }
@@ -62,7 +63,6 @@ const Todo = () => {
 
   const handleAdd = async () => {
     const newTodo = { id: uuid(), title };
-
     const response = await axios.post(
       "http://localhost:3001/api/todos",
       newTodo

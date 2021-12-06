@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json({ extended: false }));
 
 // TODO ARRAY
-const todos = [];
+let todos = [];
 
 // GET API
 app.get("/api/todos", (req, res) => {
@@ -25,6 +25,12 @@ app.post("/api/todos", (req, res) => {
   };
   todos.push(newTodo);
   res.status(201).json(todos);
+});
+
+// DELETE API
+app.delete("/api/todos", (req, res) => {
+  todos = todos.filter((todo) => todo.id !== req.body[0].id);
+  res.status(200).json(todos);
 });
 
 // Express port

@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import axios from "axios";
+import React from "react";
 import styled from "styled-components";
+import { Button } from "./Todo";
 
 const TodoListWrapper = styled.div`
   display: flex;
@@ -11,7 +13,10 @@ const TodoListWrapper = styled.div`
     list-style: number;
   }
   li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  button {
+    margin-bottom: 2rem;
   }
 `;
 
@@ -20,11 +25,28 @@ interface ITodo {
 }
 
 const TodoList = ({ todo }: ITodo) => {
+  const handleDelete = async (idToDelete: string) => {
+    const removeTodo = todo.filter((todo: { id: string }) => {
+      return todo.id === idToDelete;
+    });
+
+    const res = axios.delete("http://localhost:3001/api/todos", {
+      data: removeTodo,
+    });
+    todo = (await res).data;
+    console.log(todo, "remaining todos");
+  };
+
   return (
     <TodoListWrapper>
       <ul>
-        {todo.map(({ id, title }) => (
-          <li key={id}>{title}</li>
+        {todo.map(({ id, title }: any) => (
+          <div key={id}>
+            <li key={id}>{title}</li>
+            <Button type="button" onClick={() => handleDelete(id)}>
+              Delete
+            </Button>
+          </div>
         ))}
       </ul>
     </TodoListWrapper>
