@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import styled from "styled-components";
 import TodoList from "./TodoList";
 import { v4 as uuid } from "uuid";
@@ -56,7 +56,7 @@ const Todo = () => {
 
   const [title, setTitle] = useState<string>("");
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
   };
 

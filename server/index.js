@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require("uuid");
 // CORS
 app.use(cors());
 
-// // // Express Middleware for data on post request
+// Express Middleware for data on post request
 app.use(express.json({ extended: false }));
 
 // TODO ARRAY

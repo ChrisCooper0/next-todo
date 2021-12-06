@@ -15,12 +15,16 @@ const TodoListWrapper = styled.div`
   }
 `;
 
-const TodoList = ({ todo }: any) => {
+interface ITodo {
+  todo: { id: string; title: string }[];
+}
+
+const TodoList = ({ todo }: ITodo) => {
   return (
     <TodoListWrapper>
       <ul>
-        {todo.map((item: any) => (
-          <li key={item.id}>{item.title}</li>
+        {todo.map(({ id, title }) => (
+          <li key={id}>{title}</li>
         ))}
       </ul>
     </TodoListWrapper>
