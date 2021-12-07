@@ -22,25 +22,14 @@ const TodoListWrapper = styled.div`
 
 interface ITodo {
   todo: { id: string; title: string }[];
+  handleDelete: (id: string) => void;
 }
 
-const TodoList = ({ todo }: ITodo) => {
-  const handleDelete = async (idToDelete: string) => {
-    const removeTodo = todo.filter((todo: { id: string }) => {
-      return todo.id === idToDelete;
-    });
-
-    const res = axios.delete("http://localhost:3001/api/todos", {
-      data: removeTodo,
-    });
-    todo = (await res).data;
-    console.log(todo, "remaining todos");
-  };
-
+const TodoList = ({ todo, handleDelete }: ITodo) => {
   return (
     <TodoListWrapper>
       <ul>
-        {todo.map(({ id, title }: any) => (
+        {todo.map(({ id, title }) => (
           <div key={id}>
             <li key={id}>{title}</li>
             <Button type="button" onClick={() => handleDelete(id)}>

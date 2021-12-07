@@ -43,7 +43,8 @@ const Loading = styled.div`
 `;
 
 const Todo = () => {
-  const [todos, setTodos] = useState(null);
+  const [todos, setTodos] = useState();
+  const [title, setTitle] = useState<string>("");
 
   useEffect(() => {
     getTodos();
@@ -54,8 +55,6 @@ const Todo = () => {
     const data = res.data;
     setTodos(data);
   };
-
-  const [title, setTitle] = useState<string>("");
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
@@ -69,6 +68,19 @@ const Todo = () => {
     );
     const data = response.data;
     setTodos(data);
+  };
+
+  const handleDelete = async (id: string) => {
+    if (todos) {
+      const removeTodo = todos.filter((todo: { id: string }) => {
+        return todo.id === id;
+      });
+
+      const res = axios.delete("http://localhost:3001/api/todos", {
+        data: removeTodo,
+      });
+      setTodos((await res).data);
+    }
   };
 
   return (
@@ -88,7 +100,7 @@ const Todo = () => {
         </Button>
       </TodoWrapper>
       {todos ? (
-        <TodoList todo={todos} />
+        <TodoList todo={todos} handleDelete={handleDelete} />
       ) : (
         <Loading>
           <p>Loading...</p>
