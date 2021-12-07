@@ -43,7 +43,7 @@ const Loading = styled.div`
 `;
 
 const Todo = () => {
-  const [todos, setTodos] = useState();
+  const [todos, setTodos] = useState([] as any[]);
   const [title, setTitle] = useState<string>("");
 
   useEffect(() => {
