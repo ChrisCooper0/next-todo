@@ -46,15 +46,15 @@ const Todo = () => {
   const [todos, setTodos] = useState([] as any[]);
   const [title, setTitle] = useState<string>("");
 
-  useEffect(() => {
-    getTodos();
-  }, []);
-
   const getTodos = async () => {
     const res = await axios.get("http://localhost:3001/api/todos");
     const data = res.data;
     setTodos(data);
   };
+
+  useEffect(() => {
+    getTodos();
+  }, []);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
@@ -62,11 +62,8 @@ const Todo = () => {
 
   const handleAdd = async () => {
     const newTodo = { id: uuid(), title };
-    const response = await axios.post(
-      "http://localhost:3001/api/todos",
-      newTodo
-    );
-    const data = response.data;
+    const res = await axios.post("http://localhost:3001/api/todos", newTodo);
+    const data = res.data;
     setTodos(data);
   };
 
