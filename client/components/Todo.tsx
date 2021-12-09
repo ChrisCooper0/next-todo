@@ -65,6 +65,7 @@ const Todo = () => {
     const res = await axios.post("http://localhost:3001/api/todos", newTodo);
     const data = res.data;
     setTodos(data);
+    setTitle("");
   };
 
   const handleDelete = async (id: string) => {
