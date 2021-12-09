@@ -1,21 +1,31 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "./Todo";
 
 const TodoListWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
 
   ul {
     list-style: number;
   }
   li {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
-  button {
-    margin-bottom: 2rem;
+`;
+
+const Button = styled.button`
+  border: none;
+  border-radius: 5px;
+  padding: 0.1rem 0.3rem;
+  background-color: #f5f5f5;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  &:hover {
+    background-color: #e5e5e5;
+    color: red;
   }
 `;
 
@@ -30,10 +40,12 @@ const TodoList = ({ todo, handleDelete }: ITodo) => {
       <ul>
         {todo.map(({ id, title }) => (
           <div key={id}>
-            <li key={id}>{title}</li>
-            <Button type="button" onClick={() => handleDelete(id)}>
-              Delete
-            </Button>
+            <li key={id}>
+              {title}
+              <Button type="button" onClick={() => handleDelete(id)}>
+                x
+              </Button>
+            </li>
           </div>
         ))}
       </ul>
