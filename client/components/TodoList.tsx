@@ -6,10 +6,6 @@ const TodoListWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
-
-  ul {
-    list-style: number;
-  }
   li {
     margin-bottom: 0.75rem;
   }
@@ -22,7 +18,7 @@ const Button = styled.button`
   background-color: #f5f5f5;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
   &:hover {
     background-color: #e5e5e5;
     color: red;
@@ -37,7 +33,7 @@ interface ITodo {
 const TodoList = ({ todo, handleDelete }: ITodo) => {
   return (
     <TodoListWrapper>
-      <ul>
+      <ol>
         {todo.map(({ id, title }) => (
           <div key={id}>
             <li key={id}>
@@ -48,7 +44,7 @@ const TodoList = ({ todo, handleDelete }: ITodo) => {
             </li>
           </div>
         ))}
-      </ul>
+      </ol>
     </TodoListWrapper>
   );
 };
