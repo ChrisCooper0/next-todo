@@ -9,7 +9,7 @@ const HeaderWrapper = styled.div`
 const Header = () => {
   return (
     <HeaderWrapper>
-      <h1>Things To Do</h1>
+      <h1>To Do List</h1>
     </HeaderWrapper>
   );
 };
