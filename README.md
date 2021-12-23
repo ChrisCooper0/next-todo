@@ -1,4 +1,4 @@
-### A To Do app build with Next.js.
+### A To Do app built with Next.js.
 
 The project utilises:
 - client/server architecture, with Next.js (React) serving the front-end and Node (Express) handling the back-end
