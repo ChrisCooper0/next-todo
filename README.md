@@ -1,8 +1,8 @@
 ### A To Do app build with Next.js.
 
 The project utilises:
-- client/server architecture, with Next.js (React) serving the front-end and Node/Express handling the back-end api
-- Express for the REST todo api (Currently has GET, POST and DELETE endpoints)
+- client/server architecture, with Next.js (React) serving the front-end and Node (Express) handling the back-end
+- REST api for the todos - Currently has GET, POST and DELETE endpoints
 - TypeScript
 - styled-components
 
