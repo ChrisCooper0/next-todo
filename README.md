@@ -1,20 +1,20 @@
-A classic To Do app build with Next.js
+### A To Do app built with Next.js.
 
 The project utilises:
+- client/server architecture, with Next.js (React) serving the front-end and Node (Express) handling the back-end
+- REST api for the todos - Currently has GET, POST and DELETE endpoints
 - TypeScript
 - styled-components
-- client & server architecture, able to be started concurrently using 'npm-concurrently'
-- Express server for the todo api (Currently has GET, POST and DELETE endpoints)
 
 
-To get started, navigate to the client folder from the top-level directory
+To get started, navigate to the client folder from the top-level directory:
 
 ```
 cd client
 ```
-Then simply run dev to concurrently start the client-side app on port 3000 and the server on 3001
+Then run the dev script to concurrently start the client and server apps:
 
 ```
 npm run dev
 ```
-___
+The client-side React app will open on port 3000 and the Express server on 3001.
