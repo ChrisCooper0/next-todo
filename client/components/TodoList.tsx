@@ -28,9 +28,10 @@ const Button = styled.button`
 interface ITodo {
   todo: { id: string; title: string }[];
   handleDelete: (id: string) => void;
+  handleUpdate: (id: string) => void;
 }
 
-const TodoList = ({ todo, handleDelete }: ITodo) => {
+const TodoList = ({ todo, handleDelete, handleUpdate }: ITodo) => {
   return (
     <TodoListWrapper>
       <ol>
@@ -40,6 +41,9 @@ const TodoList = ({ todo, handleDelete }: ITodo) => {
               {title}
               <Button type="button" onClick={() => handleDelete(id)}>
                 x
+              </Button>
+              <Button type="button" onClick={() => handleUpdate(id)}>
+                Update
               </Button>
             </li>
           </div>

@@ -74,11 +74,22 @@ const Todo = () => {
         return todo.id === id;
       });
 
-      const res = axios.delete("http://localhost:3001/api/todos", {
+      const res = await axios.delete("http://localhost:3001/api/todos", {
         data: removeTodo,
       });
       setTodos((await res).data);
     }
+  };
+
+  const handleUpdate = async (id: string) => {
+    const updateTodo = todos.filter((todo: { id: string }) => {
+      return todo.id === id;
+    });
+
+    const res = await axios.put("http://localhost:3001/api/todos", {
+      data: updateTodo,
+    });
+    setTodos((await res).data);
   };
 
   return (
@@ -98,7 +109,11 @@ const Todo = () => {
         </Button>
       </TodoWrapper>
       {todos ? (
-        <TodoList todo={todos} handleDelete={handleDelete} />
+        <TodoList
+          todo={todos}
+          handleDelete={handleDelete}
+          handleUpdate={handleUpdate}
+        />
       ) : (
         <Loading>
           <p>Loading...</p>

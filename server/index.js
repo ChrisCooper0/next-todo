@@ -13,7 +13,7 @@ app.use(express.json({ extended: false }));
 let todos = [];
 
 // GET API
-app.get("/api/todos", (req, res) => {
+app.get("/api/todos", (_, res) => {
   res.status(200).json(todos);
 });
 
@@ -30,6 +30,13 @@ app.post("/api/todos", (req, res) => {
 // DELETE API
 app.delete("/api/todos", (req, res) => {
   todos = todos.filter((todo) => todo.id !== req.body[0].id);
+  res.status(200).json(todos);
+});
+
+// PUT API
+app.put("/api/todos", (req, res) => {
+  const index = todos.findIndex((todo) => todo.id === req.body.data[0].id);
+  todos[index].title = `${req.body.data[0].title} - Updated`;
   res.status(200).json(todos);
 });
 
