@@ -43,7 +43,7 @@ const Loading = styled.div`
 `;
 
 const Todo = () => {
-  const [todos, setTodos] = useState([] as any[]);
+  const [todos, setTodos] = useState([]);
   const [title, setTitle] = useState<string>("");
 
   const getTodos = async () => {

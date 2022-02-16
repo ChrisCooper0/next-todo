@@ -36,7 +36,10 @@ app.delete("/api/todos", (req, res) => {
 // PUT API
 app.put("/api/todos", (req, res) => {
   const index = todos.findIndex((todo) => todo.id === req.body.data[0].id);
+
+  // todos[index].title = req.body.data[0].title;
   todos[index].title = `${req.body.data[0].title} - Updated`;
+
   res.status(200).json(todos);
 });
 

@@ -21,7 +21,7 @@ const Button = styled.button`
   margin-left: 1rem;
   &:hover {
     background-color: #e5e5e5;
-    color: red;
+    color: #ce9a9a;
   }
 `;
 
@@ -42,7 +42,11 @@ const TodoList = ({ todo, handleDelete, handleUpdate }: ITodo) => {
               <Button type="button" onClick={() => handleDelete(id)}>
                 x
               </Button>
-              <Button type="button" onClick={() => handleUpdate(id)}>
+              <Button
+                type="button"
+                className="update"
+                onClick={() => handleUpdate(id)}
+              >
                 Update
               </Button>
             </li>
