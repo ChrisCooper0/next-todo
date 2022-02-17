@@ -28,7 +28,7 @@ const Button = styled.button`
 interface ITodo {
   todo: { id: string; title: string }[];
   handleDelete: (id: string) => void;
-  handleUpdate: (id: string) => void;
+  handleUpdate: (id: string, title: string) => void;
 }
 
 const TodoList = ({ todo, handleDelete, handleUpdate }: ITodo) => {
@@ -36,21 +36,19 @@ const TodoList = ({ todo, handleDelete, handleUpdate }: ITodo) => {
     <TodoListWrapper>
       <ol>
         {todo.map(({ id, title }) => (
-          <div key={id}>
-            <li key={id}>
-              {title}
-              <Button type="button" onClick={() => handleDelete(id)}>
-                x
-              </Button>
-              <Button
-                type="button"
-                className="update"
-                onClick={() => handleUpdate(id)}
-              >
-                Update
-              </Button>
-            </li>
-          </div>
+          <li key={id}>
+            {title}
+            <Button type="button" onClick={() => handleDelete(id)}>
+              x
+            </Button>
+            <Button
+              type="button"
+              className="update"
+              onClick={() => handleUpdate(id, title)}
+            >
+              Update
+            </Button>
+          </li>
         ))}
       </ol>
     </TodoListWrapper>
