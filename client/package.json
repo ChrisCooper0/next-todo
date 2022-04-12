@@ -2,7 +2,7 @@
   "name": "todo",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"cd .. && cd server && node index.js \" \"next dev\"",
+    "dev": "concurrently \"cd .. && cd server && nodemon index.js \" \"next dev\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
